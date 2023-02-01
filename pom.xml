@@ -15,6 +15,7 @@
   <modules>
     <module>msvc-negocios</module>
     <module>msvc-estadopedidos</module>
+    <module>msvc-producto</module>
   </modules>
   <name>Archetype - Ecommerce-Final-Kruger-Star</name>
   <url>http://maven.apache.org</url>
