@@ -1,9 +1,2 @@
 server:
   port: 8182
-datasources:
-  portal:
-    datasource:
-      url: jdbc:postgresql://localhost:5432/msvc_negocios
-      username: root
-      password: fac123
-      driverClassName: org.postgresql.Driver
