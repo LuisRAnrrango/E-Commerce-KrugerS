@@ -12,12 +12,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="msvc-estadopedidos" />
         <module name="msvc-producto" />
+        <module name="config-service" />
         <module name="msvc-negocios" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="config-service" options="-parameters" />
       <module name="msvc-estadopedidos" options="-parameters" />
       <module name="msvc-negocios" options="-parameters" />
       <module name="msvc-producto" options="-parameters" />
