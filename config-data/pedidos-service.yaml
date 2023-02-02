@@ -15,7 +15,7 @@ spring:
     password: fac123
     url: jdbc:postgresql://localhost:5432/msvc_estadopedido
   application:
-    name: msvc-estadopedidos
+    name: msvc-pedidos
 
   jpa:
     show-sql: true
