@@ -14,6 +14,7 @@
         <module name="eureka-service" />
         <module name="msvc-producto" />
         <module name="config-service" />
+        <module name="gateway-service" />
         <module name="msvc-negocios" />
       </profile>
     </annotationProcessing>
@@ -22,6 +23,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="config-service" options="-parameters" />
       <module name="eureka-service" options="-parameters" />
+      <module name="gateway-service" options="-parameters" />
       <module name="msvc-estadopedidos" options="-parameters" />
       <module name="msvc-negocios" options="-parameters" />
       <module name="msvc-producto" options="-parameters" />

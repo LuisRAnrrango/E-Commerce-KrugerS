@@ -15,7 +15,7 @@ spring:
     password: fac123
     url: jdbc:postgresql://localhost:5432/msvc_producto
   application:
-    name: msvc-productos
+    name: msvc-producto
 
   jpa:
     show-sql: true

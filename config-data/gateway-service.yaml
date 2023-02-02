@@ -1,0 +1,45 @@
+server:
+  port: 8080
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: msvc-estadopedidos
+          uri: lb://msvc-estadopedidos
+          predicates:
+              - Path=/orderdetail/**
+        - id: msvc-negocios
+          uri: lb://msvc-negocios
+          predicates:
+            - Path=/negocio/**
+        - id: msvc-producto
+          uri: lb://msvc-producto
+          predicates:
+            - Path=/category/**
+        - id: msvc-producto
+          uri: lb://msvc-producto
+          predicates:
+            - Path=/discount/**
+        - id: msvc-producto
+          uri: lb://msvc-producto
+          predicates:
+            - Path=/inventory/**
+        - id: msvc-producto
+          uri: lb://msvc-producto
+          predicates:
+            - Path=/product/**
+        - id: msvc-producto
+          uri: lb://msvc-producto
+          predicates:
+            - Path=/review/**
