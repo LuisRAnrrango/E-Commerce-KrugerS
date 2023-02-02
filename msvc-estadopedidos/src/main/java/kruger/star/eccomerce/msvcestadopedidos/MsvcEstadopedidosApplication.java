@@ -7,7 +7,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-
 public class MsvcEstadopedidosApplication {
 
 	public static void main(String[] args) {
