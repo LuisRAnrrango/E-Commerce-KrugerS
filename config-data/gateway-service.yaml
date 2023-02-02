@@ -15,8 +15,8 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: msvc-msvc-pedidos
-          uri: lb://msvc-msvc-pedidos
+        - id: msvc-pedidos
+          uri: lb://msvc-pedidos
           predicates:
               - Path=/orderdetail/**
         - id: msvc-negocios
