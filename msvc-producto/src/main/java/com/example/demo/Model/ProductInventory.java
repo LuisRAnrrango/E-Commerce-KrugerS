@@ -2,6 +2,10 @@ package com.example.demo.Model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -44,7 +48,9 @@ public class ProductInventory implements Serializable {
     @Column(name = "deleted_at")
     private Date deleted_at;
     
-    @OneToOne(mappedBy = "ProductInventory", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonManagedReference(value="prodcut-Inventory")
+    @OneToOne( cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Product product;
+    //private List<Product> product;
 
 }

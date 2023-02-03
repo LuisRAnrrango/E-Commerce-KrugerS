@@ -48,7 +48,7 @@ public class ReviewController {
     @PostMapping("/save")
     public ResponseEntity<Review> save(@RequestBody Review review){
         Optional<Product> product= productService.findProductoByid(review.getProduct().getId());
-      review.setProduct(product.get());
+        review.setProduct(product.get());
         Review reviewNew = reviewService.save(review);
         return ResponseEntity.ok(reviewNew);
     }
@@ -57,13 +57,13 @@ public class ReviewController {
     @PutMapping("/update/{id}")
     public ResponseEntity<Review> update(@RequestBody Review review,@PathVariable("id") Integer id ){
 
-       Optional<Product> product = productService.findProductoByid(review.getProduct().getId());
-       Review review1 = reviewService.findReviewByid(id).get();
-       review1.setRating(review.getRating());
-       review1.setText(review.getText());
-       review1.setProduct(product.get());
-       Review reviewNew = reviewService.save(review1);
-       return ResponseEntity.ok(reviewNew);
+        Optional<Product> product = productService.findProductoByid(review.getProduct().getId());
+        Review review1 = reviewService.findReviewByid(id).get();
+        review1.setRating(review.getRating());
+        review1.setText(review.getText());
+        review1.setProduct(product.get());
+        Review reviewNew = reviewService.save(review1);
+        return ResponseEntity.ok(reviewNew);
     }
 
 

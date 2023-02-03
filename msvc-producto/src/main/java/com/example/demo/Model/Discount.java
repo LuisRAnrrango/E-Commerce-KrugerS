@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -55,6 +57,7 @@ public class Discount implements Serializable {
     @Column(name = "deleted_at")
     private Date deleted_at;
     
+    @JsonManagedReference(value="prodcut-discount")
     @OneToMany(mappedBy="discount", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<Product> product;
 

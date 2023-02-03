@@ -19,12 +19,12 @@ import com.example.demo.Service.CategoryService;
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
-	
-	
-	@Autowired
-	private CategoryService categoryService;
-	
-	@GetMapping
+
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @GetMapping
     public ResponseEntity<List<ProductCategory>> findAll(){
         List<ProductCategory> categorys = categoryService.findAll();
         if(categorys.isEmpty())
@@ -44,10 +44,10 @@ public class CategoryController {
     @PostMapping("/save")
     public ResponseEntity<ProductCategory> save(@RequestBody ProductCategory category){
 
-    	ProductCategory categoryNew = categoryService.save(category);
+        ProductCategory categoryNew = categoryService.save(category);
         return ResponseEntity.ok(categoryNew);
     }
-    
+
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
     public void delete(@PathVariable Integer id) {
         categoryService.delete(id);

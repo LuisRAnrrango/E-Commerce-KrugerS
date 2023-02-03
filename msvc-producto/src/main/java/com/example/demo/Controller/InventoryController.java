@@ -19,12 +19,12 @@ import com.example.demo.Service.InventoryService;
 @RestController
 @RequestMapping("/inventory")
 public class InventoryController {
-	
-	@Autowired
-	private InventoryService inventoryService;
-	
-	
-	@GetMapping
+
+    @Autowired
+    private InventoryService inventoryService;
+
+
+    @GetMapping
     public ResponseEntity<List<ProductInventory>> findAll(){
         List<ProductInventory> inventory = inventoryService.findAll();
         if(inventory.isEmpty())
@@ -43,13 +43,13 @@ public class InventoryController {
 
     @PostMapping("/save")
     public ResponseEntity<ProductInventory> save(@RequestBody ProductInventory inventory){
-    	ProductInventory inventoryNew = inventoryService.save(inventory);
+        ProductInventory inventoryNew = inventoryService.save(inventory);
         return ResponseEntity.ok(inventoryNew);
     }
-    
+
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
     public void delete(@PathVariable Integer id) {
-    	inventoryService.delete(id);
+        inventoryService.delete(id);
     }
 
 }

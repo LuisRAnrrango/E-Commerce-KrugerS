@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.Model.Product;
 import com.example.demo.Repository.ProductRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -16,6 +17,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 	
 	@Override
+	@Transactional(readOnly = true)
     public List<Product> findAll() {
         return productRepository.findAll();
     }
@@ -37,6 +39,7 @@ public class ProductServiceImpl implements ProductService {
 	    }
 	 
 	 @Override
+	 @Transactional(readOnly = true)
 	    public Optional<Product> findProductoByid(Integer id) {
 	        return  productRepository.findById(id);
 	    }

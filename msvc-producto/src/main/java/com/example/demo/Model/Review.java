@@ -42,11 +42,11 @@ public class Review implements Serializable {
     private Integer id;
     
     
-    @Column(name = "rating", nullable = false,length = 100)
+    @Column(name = "rating", nullable = true,length = 100)
     private Integer rating;
 
 
-    @Column(name = "text", nullable = false,length = 250)
+    @Column(name = "text", nullable = true,length = 250)
     private String text;
     
     @CreatedDate
@@ -61,7 +61,7 @@ public class Review implements Serializable {
     private Date modified_at;
     
     //@JsonIgnore
-    @JsonBackReference
+    @JsonBackReference(value="prodcut-reviews")
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private Product product;

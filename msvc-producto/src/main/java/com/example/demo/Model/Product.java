@@ -8,6 +8,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -47,7 +48,7 @@ public class Product  implements Serializable {
     @Column(name = "name", nullable = false,length = 250)
     private String name;
     
-    @Column(name = "longdesc ", nullable = false,length = 250)
+    @Column(name = "longdesc ", nullable = false,length = 600)
     private String longdesc;
 
     @Column(name = "description", nullable = false,length = 250)
@@ -85,21 +86,24 @@ public class Product  implements Serializable {
     private Date deleted_at;
     
  // Que columna en la tabla Product tiene la FK
+
+    @JsonBackReference(value="prodcut-Inventory")
     @JoinColumn(name = "inventory_id")
     @OneToOne(fetch = FetchType.LAZY)
     private ProductInventory ProductInventory;
     
+    @JsonBackReference(value="prodcut-category")
     @ManyToOne
     @JoinColumn(name="category_id", nullable=false)
     private ProductCategory productCategory;
 
-    
+    @JsonBackReference(value="prodcut-discount")
     @ManyToOne
     @JoinColumn(name="discount_id", nullable=false)
     private Discount discount;
     
     //@JsonIgnore
-    @JsonManagedReference	
+    @JsonManagedReference(value="prodcut-reviews")	
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Review> reviews;
 

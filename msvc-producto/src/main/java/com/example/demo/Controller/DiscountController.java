@@ -20,11 +20,11 @@ import com.example.demo.Service.DiscountService;
 @RequestMapping("/discount")
 public class DiscountController {
 
-	@Autowired
-	private DiscountService discountService;
-	
-	
-	@GetMapping
+    @Autowired
+    private DiscountService discountService;
+
+
+    @GetMapping
     public ResponseEntity<List<Discount>> findAll(){
         List<Discount> categorys = discountService.findAll();
         if(categorys.isEmpty())
@@ -44,13 +44,13 @@ public class DiscountController {
     @PostMapping("/save")
     public ResponseEntity<Discount> save(@RequestBody Discount discount){
 
-    	Discount categoryNew = discountService.save(discount);
+        Discount categoryNew = discountService.save(discount);
         return ResponseEntity.ok(categoryNew);
     }
-    
+
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
     public void delete(@PathVariable Integer id) {
-    	discountService.delete(id);
+        discountService.delete(id);
     }
 
 
