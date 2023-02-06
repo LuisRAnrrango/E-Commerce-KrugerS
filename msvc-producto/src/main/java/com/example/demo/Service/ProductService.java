@@ -3,7 +3,7 @@ package com.example.demo.Service;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.demo.Model.Product;
+import com.example.demo.Controller.Model.Product;
 
 public interface ProductService {
 	public List<Product> findAll();

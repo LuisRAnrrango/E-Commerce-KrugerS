@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
-import com.example.demo.Model.ProductInventory;
+import com.example.demo.Controller.Model.ProductInventory;
 
 @Repository
 public interface InventoryRepository extends JpaRepository<ProductInventory, Integer> {

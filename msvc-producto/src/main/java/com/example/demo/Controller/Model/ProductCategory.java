@@ -1,10 +1,8 @@
-package com.example.demo.Model;
+package com.example.demo.Controller.Model;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -52,7 +50,7 @@ public class ProductCategory implements Serializable {
     private Date deleted_at;
     
     //@JsonIgnore
-    @JsonManagedReference(value="prodcut-category")
+   // @JsonManagedReference(value="prodcut-category")
     @OneToMany(mappedBy="productCategory", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Set<Product> product;
     

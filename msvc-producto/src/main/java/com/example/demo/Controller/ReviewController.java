@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.Model.Product;
-import com.example.demo.Model.Review;
+import com.example.demo.Controller.Model.Product;
+import com.example.demo.Controller.Model.Review;
 import com.example.demo.Service.ProductService;
 import com.example.demo.Service.ReviewService;
 

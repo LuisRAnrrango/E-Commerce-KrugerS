@@ -5,15 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.Model.ProductInventory;
+import com.example.demo.Controller.Model.ProductInventory;
 import com.example.demo.Service.InventoryService;
 
 @RestController
@@ -51,5 +45,17 @@ public class InventoryController {
     public void delete(@PathVariable Integer id) {
         inventoryService.delete(id);
     }
+
+    @PutMapping ("/update/{id}")
+    public ResponseEntity<ProductInventory> update(@RequestBody ProductInventory inventory,@PathVariable("id") Integer id ){
+
+        ProductInventory inventoryedit= inventoryService.findInventoryByid(id).get();
+        inventoryedit.setQuantity(inventory.getQuantity());
+
+        ProductInventory inventoryNew = inventoryService.save(inventoryedit);
+        return ResponseEntity.ok(inventoryNew);
+
+    }
+
 
 }

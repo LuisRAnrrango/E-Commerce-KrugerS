@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.Model.Discount;
+import com.example.demo.Controller.Model.Discount;
 import com.example.demo.Repository.DiscountRepository;
 
 @Service

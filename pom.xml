@@ -19,6 +19,8 @@
     <module>config-service</module>
     <module>eureka-service</module>
     <module>gateway-service</module>
+    <module>login</module>
+
   </modules>
   <name>Archetype - Ecommerce-Final-Kruger-Star</name>
   <url>http://maven.apache.org</url>

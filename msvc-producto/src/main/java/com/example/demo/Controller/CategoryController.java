@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.Model.ProductCategory;
+import com.example.demo.Controller.Model.ProductCategory;
 import com.example.demo.Service.CategoryService;
 
 @RestController

@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.Model.Discount;
-import com.example.demo.Model.Product;
-import com.example.demo.Model.ProductCategory;
-import com.example.demo.Model.ProductInventory;
+import com.example.demo.Controller.Model.Discount;
+import com.example.demo.Controller.Model.Product;
+import com.example.demo.Controller.Model.ProductCategory;
+import com.example.demo.Controller.Model.ProductInventory;
 import com.example.demo.Service.CategoryService;
 import com.example.demo.Service.DiscountService;
 import com.example.demo.Service.InventoryService;

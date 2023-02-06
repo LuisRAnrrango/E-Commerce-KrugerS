@@ -1,4 +1,4 @@
-package com.example.demo.Model;
+package com.example.demo.Controller.Model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -92,12 +92,12 @@ public class Product  implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     private ProductInventory ProductInventory;
     
-    @JsonBackReference(value="prodcut-category")
+  //  @JsonBackReference(value="prodcut-category")
     @ManyToOne
     @JoinColumn(name="category_id", nullable=false)
     private ProductCategory productCategory;
 
-    @JsonBackReference(value="prodcut-discount")
+   // @JsonBackReference(value="prodcut-discount")
     @ManyToOne
     @JoinColumn(name="discount_id", nullable=false)
     private Discount discount;
