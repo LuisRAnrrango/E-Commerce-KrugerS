@@ -16,11 +16,12 @@
         <module name="gateway-service" />
         <module name="msvc-negocios" />
         <module name="msvc-estadopedidos" />
-        <module name="login" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="login" target="17" />
       <module name="spring-security" target="1.8" />
+      <module name="spring-security-demo-app" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -33,6 +34,7 @@
       <module name="msvc-negocios" options="-parameters" />
       <module name="msvc-producto" options="-parameters" />
       <module name="spring-security" options="-parameters" />
+      <module name="spring-security-demo-app" options="-parameters" />
     </option>
   </component>
 </project>
