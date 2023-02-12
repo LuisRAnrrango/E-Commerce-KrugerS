@@ -3,9 +3,6 @@ package com.thecodeveal.app;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.thecodeveal.app.entities.Authority;
 import com.thecodeveal.app.entities.User;
 import com.thecodeveal.app.repository.UserDetailsRepository;
+
+import jakarta.annotation.PostConstruct;
 
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -49,7 +48,7 @@ public class SpringSecurityDemoAppApplication {
 		user.setEnabled(true);
 		user.setAuthorities(authorityList);
 		//System.out.println(user);
-	//	userDetailsRepository.save(user);
+		//userDetailsRepository.save(user);
 		
 		
 		

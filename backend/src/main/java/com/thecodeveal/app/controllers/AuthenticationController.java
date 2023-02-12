@@ -36,10 +36,10 @@ public class AuthenticationController {
 
 	@Autowired
 	JWTTokenHelper jWTTokenHelper;
-	
+
 	@Autowired
 	private UserDetailsService userDetailsService;
-	
+
 	@Autowired
 	private CustomUserService customUserService;
 
@@ -47,42 +47,52 @@ public class AuthenticationController {
 	private PasswordEncoder passwordEncoder;
 
 	@PostMapping("/auth/login")
-	public ResponseEntity<?> login(@RequestBody AuthenticationRequest authenticationRequest) throws InvalidKeySpecException, NoSuchAlgorithmException {
+	public ResponseEntity<?> login(@RequestBody AuthenticationRequest authenticationRequest)
+			throws InvalidKeySpecException, NoSuchAlgorithmException {
+		/*
+		 * MANERA #1
+		 * para autenticar un usuario puedes utilizar este metodo que crei en el
+		 * customUserService class lo que hace login es buscar si el usuario existe en
+		 * el base de datos y luego se verfica si el password esta correcto, caso
+		 * posititvo te develve el loginResponse caso negativo te devuelve null
+		 */
 
-		final Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+		/*
+		 * LoginResponse response=customUserService.login(authenticationRequest); return
+		 * response!=null ? ResponseEntity.ok(response) :
+		 * ResponseEntity.badRequest().build();
+		 */
+//---------------------------------------------------------------
+		//MANERA #2
+		// el codigo antiguo que hace la autenticacion por medio de authenticationManager
+		//ambas maneras funcionan
+		// es recomendado que pasas todo esta logica al service
+		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
 				authenticationRequest.getUserName(), authenticationRequest.getPassword()));
-		
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		
-		User user=(User)authentication.getPrincipal();
-		String jwtToken=jWTTokenHelper.generateToken(user.getUsername());
-		
-		LoginResponse response=new LoginResponse();
-		response.setToken(jwtToken);
-		
 
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		User user = (User) authentication.getPrincipal();
+		String jwtToken = jWTTokenHelper.generateToken(user.getUsername());
+		LoginResponse response = new LoginResponse();
+		response.setToken(jwtToken);
 		return ResponseEntity.ok(response);
 	}
-	
+
 	@GetMapping("/auth/userinfo")
-	public ResponseEntity<?> getUserInfo(Principal user){
-		User userObj=(User) userDetailsService.loadUserByUsername(user.getName());
-		
-		UserInfo userInfo=new UserInfo();
+	public ResponseEntity<?> getUserInfo(Principal user) {
+		User userObj = (User) userDetailsService.loadUserByUsername(user.getName());
+
+		UserInfo userInfo = new UserInfo();
 		userInfo.setFirstName(userObj.getFirstName());
 		userInfo.setLastName(userObj.getLastName());
 		userInfo.setRoles(userObj.getAuthorities().toArray());
-		
-		
+
 		return ResponseEntity.ok(userInfo);
-		
-		
-		
+
 	}
-	
-	
+
 	@PostMapping("/save/user")
-	public ResponseEntity<?> save(@RequestBody User user){
+	public ResponseEntity<?> save(@RequestBody User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		User newuser = customUserService.save(user);
 		return ResponseEntity.ok(newuser);
