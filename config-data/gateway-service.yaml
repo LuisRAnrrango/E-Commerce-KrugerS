@@ -43,3 +43,7 @@ spring:
           uri: lb://msvc-producto
           predicates:
             - Path=/review/**
+        - id: msvc-login
+          uri: lb://msvc-login
+          predicates:
+            - Path=/api/v1**
