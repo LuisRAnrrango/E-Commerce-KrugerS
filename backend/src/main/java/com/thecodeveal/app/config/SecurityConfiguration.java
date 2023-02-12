@@ -3,6 +3,7 @@ package com.thecodeveal.app.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -15,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.thecodeveal.app.services.CustomUserService;
 
@@ -24,6 +26,9 @@ public class SecurityConfiguration   {
 
 	@Autowired
 	private CustomUserService userService;
+	
+	@Autowired
+	private JWTTokenHelper jWTTokenHelper;
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -61,16 +66,20 @@ public class SecurityConfiguration   {
 	        String[] allowedPathes = new String[]
 	        {
 	        	"/h2-console/**",
-	        	 "/api/v1/auth/login",
+	        	"/api/v1/auth/login",
 	        	 "/api/v1/save/**",
 
 	        };
 	        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.authorizeHttpRequests().requestMatchers(allowedPathes).permitAll()
+			.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated()
+			.and()
+			.httpBasic();
 			;
 	        http.csrf().disable().cors().and().headers().frameOptions().disable();
 
 	        return http.build();
 
 	    };
+	    
 }
