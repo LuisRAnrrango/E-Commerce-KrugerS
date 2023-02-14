@@ -17,9 +17,7 @@ public class AppCorsConfiguration {
         config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
-        List<String> origins = new java.util.ArrayList<>();
-        origins.add("http://localhost:3000");
-        config.setAllowedOrigins(origins);
+        config.setAllowedOrigins(List.of("http://localhost:3000"));
         source.registerCorsConfiguration("/**", config);
         FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
         bean.setOrder(0);
