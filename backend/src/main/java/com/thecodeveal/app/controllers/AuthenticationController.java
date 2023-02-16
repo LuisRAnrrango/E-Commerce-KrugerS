@@ -3,6 +3,7 @@ package com.thecodeveal.app.controllers;
 import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
 import java.security.spec.InvalidKeySpecException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ import com.thecodeveal.app.services.CustomUserService;
 
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AuthenticationController {
 
 	@Autowired
@@ -73,21 +74,34 @@ public class AuthenticationController {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		User user = (User) authentication.getPrincipal();
 		String jwtToken = jWTTokenHelper.generateToken(user.getUsername());
-		LoginResponse response = new LoginResponse();
+		LoginResponse response = LoginResponse.builder()
+				.userName(user.getUsername())
+				.firstName(user.getFirstName())
+				.lastName(user.getLastName())
+				.email(user.getEmail())
+				.id(user.getId())
+				.password(user.getPassword())
+				.phoneNumber(user.getPhoneNumber())
+				.roles(user.getAuthorities().toArray())
+				.build();
 		response.setToken(jwtToken);
 		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping("/auth/userinfo")
 	public ResponseEntity<?> getUserInfo(Principal user) {
-		User userObj = (User) userDetailsService.loadUserByUsername(user.getName());
+		if(user!=null) {
+			User userObj = (User) userDetailsService.loadUserByUsername(user.getName());
 
-		UserInfo userInfo = new UserInfo();
-		userInfo.setFirstName(userObj.getFirstName());
-		userInfo.setLastName(userObj.getLastName());
-		userInfo.setRoles(userObj.getAuthorities().toArray());
+			UserInfo userInfo = new UserInfo();
+			userInfo.setFirstName(userObj.getFirstName());
+			userInfo.setLastName(userObj.getLastName());
+			userInfo.setRoles(userObj.getAuthorities().toArray());
 
-		return ResponseEntity.ok(userInfo);
+			return ResponseEntity.ok(userInfo);
+		}else
+			return  ResponseEntity.badRequest().build();
+		
 
 	}
 

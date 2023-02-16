@@ -26,6 +26,12 @@
   <scope>provided</scope>
 </dependency>
 
+	<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
 <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
 <dependency>
   <groupId>javax.xml.bind</groupId>

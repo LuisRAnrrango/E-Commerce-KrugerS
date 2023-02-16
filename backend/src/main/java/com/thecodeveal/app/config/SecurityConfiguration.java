@@ -66,13 +66,12 @@ public class SecurityConfiguration   {
 	        String[] allowedPathes = new String[]
 	        {
 	        	"/h2-console/**",
-	        	"/api/v1/auth/login",
+	        	"/api/v1/**",
 	        	 "/api/v1/save/**",
 
 	        };
 	        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.authorizeHttpRequests().requestMatchers(allowedPathes).permitAll()
-			.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated()
 			.and()
 			.httpBasic();
 			;
