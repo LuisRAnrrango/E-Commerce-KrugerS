@@ -1,7 +1,7 @@
 <br />
 <div align="center">
   <a href="https://github.com">
-    <img src="src/main/resources/img/K-Market-2.png" alt="Logo" width="300" height="180">
+    <img src="src/main/resources/img/K-Market-2.png" alt="Logo" width="390" height="180">
   </a>
 
   <h1 style="font-size: 60px; font-weight: 700" align="center">🛒KMarket Ecommerce</h1>
